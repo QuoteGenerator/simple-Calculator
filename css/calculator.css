@@ -1,0 +1,96 @@
+.calculator{
+    background: black;
+    width: 20vw;
+    height: 25vw;
+    border: 0.25vw solid red;
+    border-radius: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+#outputbar{
+    background: black;
+    border: 0.2vw solid red;
+    border-radius: 1vw;
+    width: 18vw;
+    height: 3vw;
+    font-size: 1.8vw;
+    align-content: center;
+    text-align: center;
+    margin-bottom: 3vw;
+    margin-top: 1vw;
+}
+
+.inputSection{
+    display: flex;
+    flex-direction: row;
+    height: 30vw;
+    width: 20vw;
+    justify-content: center;
+}
+
+.numbpad{
+    height:11vw;
+    width: 8vw;
+    font-size: 1.5vw;
+    display: flex;
+    justify-content:flex-start;
+    flex-wrap: wrap;
+    margin-right: 1vw;
+}
+.numbpad div{
+    background: transparent;
+    padding: 0.5vw;
+    margin: 0.1vw;
+    border: 0.1vw solid red;
+    border-radius: 0.5vw;
+    width: 0.9vw;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightSide{
+    background: transparent;
+    width: 4.3vw;
+    height: 8vw;
+    font-size: 1.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.rightSide div{
+    width: 1.1vw;
+    padding: 0.3vw;
+    margin: 0.1vw;
+    text-align: center;
+    background:transparent;
+    border: 0.1vw solid red;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#submitButton{
+    border: 0.1vw solid red;
+    width: 3.3vw;
+    border-radius: 0.5vw;
+    margin-left: 0vw;
+    font-size: 1.5vw;
+}
+
+#deleteButton{
+    border: 0.1vw solid red;
+    width: 3.3vw;
+    border-radius: 0.5vw;
+    margin-right: 2vw;
+    font-size: 1.5vw;
+}

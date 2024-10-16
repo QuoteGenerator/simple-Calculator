@@ -14,7 +14,13 @@ document.addEventListener("DOMContentLoaded", function() {
     let nine = document.getElementById("nine");
     let zero = document.getElementById("zero");
 
-    let savingNumbers = "";
+    let savingString ="";
+    let savingNumbersLines=[];
+
+
+    //right-side-calculator
+    let submitButton = document.getElementById("submitButton");
+
 
     //Operators
     let plus = document.getElementById("plus");
@@ -30,20 +36,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     one.addEventListener("click", function(){
+        savingNumbers += "1";
         if(result === 0 && minusOperatorHasBeenChoosen === false){
             result = 1;
         }
 
-        if(result != 0 || minusOperatorHasBeenChoosen === true){ // only work if i want to do minus
-            if(plusOperatorHasBeenChoosen === true){result += 1; plusOperatorHasBeenChoosen = false;}
-            if(minusOperatorHasBeenChoosen === true){result -= 1; minusOperatorHasBeenChoosen = false;}
-            if(mulitplicationOperatorHasBeenChoosen === true){result *= 1; mulitplicationOperatorHasBeenChoosen = false;}
-            if(divisionOperatorHasBeenChoosen === true){result /= 1; divisionOperatorHasBeenChoosen = false;}
-        }
-
-        console.log(result);
+        console.log(savingNumbers);
     })
     two.addEventListener("click", function(){
+        savingNumbers += "2";
         if(result === 0 && minusOperatorHasBeenChoosen === false){
             result = 2;
         }
@@ -55,10 +56,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if(divisionOperatorHasBeenChoosen === true){result /= 2; divisionOperatorHasBeenChoosen = false;}
         }
 
-
         console.log(result);
+        console.log(savingNumbers);
     })
     three.addEventListener("click", function(){
+        savingNumbers += "3";
         if(result === 0 && minusOperatorHasBeenChoosen === false){
             result = 3;
         }
@@ -70,10 +72,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if(divisionOperatorHasBeenChoosen === true){result /= 3; divisionOperatorHasBeenChoosen = false;}
         }
 
-
         console.log(result);
+        console.log(savingNumbers);
     })
     four.addEventListener("click", function(){
+        savingNumbers += "4";
         if(result === 0 && minusOperatorHasBeenChoosen === false){
             result = 4;
         }
@@ -85,10 +88,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if(divisionOperatorHasBeenChoosen === true){result /= 4; divisionOperatorHasBeenChoosen = false;}
         }
 
-
         console.log(result);
+        console.log(savingNumbers);
     })
     five.addEventListener("click", function(){
+        savingNumbers += "5";
         if(result === 0 && minusOperatorHasBeenChoosen === false){
             result = 5;
         }
@@ -100,11 +104,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if(divisionOperatorHasBeenChoosen === true){result /= 5; divisionOperatorHasBeenChoosen = false;}
         }
 
-
-        
         console.log(result);
+        console.log(savingNumbers);
     })
     six.addEventListener("click", function(){
+        savingNumbers += "6";
         if(result === 0 && minusOperatorHasBeenChoosen === false){
             result = 6;
         }
@@ -117,11 +121,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if(divisionOperatorHasBeenChoosen === true){result /= 5; divisionOperatorHasBeenChoosen = false;}
         }
 
-
-        
         console.log(result);
+        console.log(savingNumbers);
     })
     seven.addEventListener("click", function(){
+        savingNumbers += "7";
         if(result === 0 && minusOperatorHasBeenChoosen === false){
             result = 7;
         }
@@ -134,11 +138,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if(divisionOperatorHasBeenChoosen === true){result /= 5; divisionOperatorHasBeenChoosen = false;}
         }
 
-
-        
         console.log(result);
+        console.log(savingNumbers);
     })
     eight.addEventListener("click", function(){
+        savingNumbers += "8";
         if(result === 0 && minusOperatorHasBeenChoosen === false){
             result = 8;
         }
@@ -151,11 +155,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if(divisionOperatorHasBeenChoosen === true){result /= 5; divisionOperatorHasBeenChoosen = false;}
         }
 
-
-        
         console.log(result);
+        console.log(savingNumbers);
     })
     nine.addEventListener("click", function(){
+        savingNumbers += "9";
         if(result === 0 && minusOperatorHasBeenChoosen === false){
             result = 9;
         }
@@ -168,16 +172,16 @@ document.addEventListener("DOMContentLoaded", function() {
             if(divisionOperatorHasBeenChoosen === true){result /= 5; divisionOperatorHasBeenChoosen = false;}
         }
 
-
-        
         console.log(result);
+        console.log(savingNumbers);
     })
 
     zero.addEventListener("click", function(){
+        savingNumbers += "0";
         if(result === 0 && minusOperatorHasBeenChoosen === false){
             result = 0;
         }
-        
+
         if(result != 0 || minusOperatorHasBeenChoosen === true){
             if(plusOperatorHasBeenChoosen === true){result += 0; plusOperatorHasBeenChoosen = false;}
             if(minusOperatorHasBeenChoosen === true){result -= 0; minusOperatorHasBeenChoosen = false;}
@@ -186,11 +190,20 @@ document.addEventListener("DOMContentLoaded", function() {
             if(divisionOperatorHasBeenChoosen === true){result /= 5; divisionOperatorHasBeenChoosen = false;}
         }
 
-
-        
         console.log(result);
+        console.log(savingNumbers);
 
     })
+
+    submitButton.addEventListener("click", function(){
+        if(result != 0 || minusOperatorHasBeenChoosen === true){
+            //for loop (all additions + all minus) + (all multiplications + all divisions)
+        }
+
+        console.log(result);
+    })
+
+
 
     //operators
     plus.addEventListener("click", function(){

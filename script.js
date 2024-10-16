@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     
     let result = 0;
+    let outputbar = document.getElementById("outputbar");
 
     //Numpad
     let one = document.getElementById("one");
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let eight = document.getElementById("eight");
     let nine = document.getElementById("nine");
     let zero = document.getElementById("zero");
+    let dot = document.getElementById("dot");
 
     //Saving the numbers for last calculation (for result[sum])
     let savingNumbers ="";
@@ -25,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Right-side-calculator
     let submitButton = document.getElementById("submitButton");
+    let deleteButton = document.getElementById("deleteButton");
 
     //Operators
     let plus = document.getElementById("plus");
@@ -75,29 +78,105 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(savingNumbers);
     })
 
-    submitButton.addEventListener("click", function(){
-        
-            //for loop (all additions + all minus) + (all multiplications + all divisions)
-
-
-        console.log(result);
+    dot.addEventListener("click", function(){
+        savingNumbers += ".";
+        console.log(savingNumbers);
     })
 
-
-
-    //operators
-    plus.addEventListener("click", function(){
-        console.log("plus operator has been chosen");
-        if(lastOperator !== "*" && lastOperator !== "/" && newOperator !== "/" && newOperator !== "*" && lastOperator !== "-"){
+    submitButton.addEventListener("click", function(){
+        
+        if((lastOperator === "" || lastOperator === "+") && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
             plusNumbers[plusNumbers.length] = savingNumbers;
             savingNumbers = "";
         }
-    })
-    minus.addEventListener("click", function(){
-        console.log("plus operator has been chosen");
-        if(lastOperator !== "*" && lastOperator !== "/" && newOperator !== "/" && newOperator !== "*" && lastOperator !== "+"){
+        if(lastOperator === "-" && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){ //wenn wir enter drücken wird lastOperator zu ""
             minusNumbers[minusNumbers.length] = savingNumbers;
             savingNumbers = "";
         }
-    })    
+
+        //for loop (all additions + all minus) + (all multiplications + all divisions)
+        for(i = 0; i < plusNumbers.length; i++){
+            result += parseFloat(plusNumbers[i]);
+        }
+        
+        for(j = 0; j < minusNumbers.length; j++){
+            result -= parseFloat(minusNumbers[j]);
+        }
+
+        console.log(result);
+        outputbar.textContent = result;
+        plusNumbers = [];
+        minusNumbers = [];
+    })
+    
+    deleteButton.addEventListener("click",function(){
+        savingNumbers ="";
+
+        plusNumbers = [];
+        minusNumbers = [];
+    
+        lastOperator = "";
+        newOperator = "";
+        result = 0;
+        //output all data in console
+        console.log(savingNumbers);
+        console.log(plusNumbers);
+        console.log(minusNumbers);
+    })
+
+
+
+    //categorize number (plus - minus - division - multiplication)
+
+    function categorizeNumber(operator){
+        if(operator === "plus"){
+            console.log("plus operator has been chosen");
+
+            lastOperator = newOperator;
+            newOperator = "+";
+
+            if((lastOperator === "" || lastOperator === "+") && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+                plusNumbers[plusNumbers.length] = savingNumbers;
+                savingNumbers = "";
+            }
+            if(lastOperator === "-" && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+                minusNumbers[minusNumbers.length] = savingNumbers;
+                savingNumbers = "";
+            }
+
+            //output all data in console
+            console.log(savingNumbers);
+            console.log(plusNumbers);
+            console.log(minusNumbers);
+        }
+
+        if(operator === "minus"){
+            console.log("minus operator has been chosen");
+
+            lastOperator = newOperator;
+            newOperator = "-";
+
+            if((lastOperator === "" || lastOperator === "+") && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+                plusNumbers[plusNumbers.length] = savingNumbers;
+                savingNumbers = "";
+            }
+            if(lastOperator === "-" && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+                minusNumbers[minusNumbers.length] = savingNumbers;
+                savingNumbers = "";
+            }
+
+            //output all data in console
+            console.log(savingNumbers);
+            console.log(plusNumbers);
+            console.log(minusNumbers);
+        }
+        
+    }
+
+    plus.addEventListener("click", function(){
+        categorizeNumber("plus");
+    })
+    minus.addEventListener("click", function(){
+        categorizeNumber("minus");
+    })
 });

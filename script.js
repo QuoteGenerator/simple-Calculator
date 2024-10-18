@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
             wie: 3 * 4 * 5 (3 zuerst wird gespeichert nachdem * zeichen gedrückt wurde im Plus und nachdem 4 
                 wird die zahl mit der vorherigen eben gerechnet, der gespeicherten also und die 5 genauso rechnet das mal 5, 
                 da wir ja keine zahlen dazwischen speichern und somit immer (die letzte[neuste]) zahl drücken können
-            */)
+            */
 
             //output all data in console
             console.log(savingNumbers);

@@ -95,15 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
             savingNumbers = "";
         }
 
-        if(savingNumbers!=="" && lastOperator !== ""){
-            if(lastOperator === "+"){
-                plusNumbers[plusNumbers.length] *= parseFloat(savingNumbers);
-            }
-            if(lastOperator === "-"){
-                minusNumbers[minusNumbers.length] *= parseFloat(savingNumbers);
-            }
-            savingNumbers = "";
-        }
+
 
         //for loop (all additions + all minus) + (all multiplications + all divisions)
         for(i = 0; i < plusNumbers.length; i++){
@@ -156,21 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 savingNumbers = "";
             }
             
-            if(savingNumbers!="" && lastOperator != ""){
-                if(lastOperator === "+"){
-                    if(lastOperator === ""){
-                        plusNumbers[plusNumbers.length] = savingNumbers;
-                    }
-                    plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
-                }
-                if(lastOperator === "-"){
-                    if(lastOperator === ""){
-                        minusNumbers[minusNumbers.length] = savingNumbers;
-                    }
-                    minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
-                }
-                savingNumbers = "";
-            }
+            
 
 
             //output all data in console
@@ -194,21 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 savingNumbers = "";
             }
 
-            if(savingNumbers!=="" && lastOperator !== ""){
-                if(lastOperator === "+"){
-                    if(lastOperator === ""){
-                        plusNumbers[plusNumbers.length] = savingNumbers;
-                    }
-                    plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
-                }
-                if(lastOperator === "-"){
-                    if(lastOperator === ""){
-                        minusNumbers[minusNumbers.length] = savingNumbers;
-                    }
-                    minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
-                }
-                savingNumbers = "";
-            }
+            
 
             //output all data in console
             console.log(savingNumbers);
@@ -237,13 +201,18 @@ document.addEventListener("DOMContentLoaded", function() {
                     
                 }
                 if(lastOperator === "-"){
-                    if(lastOperator === ""){
-                        minusNumbers[minusNumbers.length] = savingNumbers;
-                    }
                     minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
                 }
                 savingNumbers = "";
-            }
+            } /* wir müssen das so machen dass wen das mal gedrückt wird, 
+            dass die zahl davor gespeichert wird und halt wenn wieder mal vorkommt dass diese zahl die jetzt 
+            entweder in minus doer plus numbers sich befindet eben mit der zahl davor mulitpliziert wird 
+            und wenn enter gedrückt wird, dass die zahl auch davor multipliziert wird. 
+            3 * 4 (die drei soll gespeichert werden, nun zum ende enter wird gedrückt und das heißt 3 * 4.) beim beispiel, 
+            wie: 3 * 4 * 5 (3 zuerst wird gespeichert nachdem * zeichen gedrückt wurde im Plus und nachdem 4 
+                wird die zahl mit der vorherigen eben gerechnet, der gespeicherten also und die 5 genauso rechnet das mal 5, 
+                da wir ja keine zahlen dazwischen speichern und somit immer (die letzte[neuste]) zahl drücken können
+            */)
 
             //output all data in console
             console.log(savingNumbers);

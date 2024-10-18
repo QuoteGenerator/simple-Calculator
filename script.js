@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let plusNumbers = [];
     let minusNumbers = [];
+    
 
     let lastOperator = "";
     let newOperator = "";
@@ -94,6 +95,16 @@ document.addEventListener("DOMContentLoaded", function() {
             savingNumbers = "";
         }
 
+        if(savingNumbers!=="" && lastOperator !== ""){
+            if(lastOperator === "+"){
+                plusNumbers[plusNumbers.length] *= parseFloat(savingNumbers);
+            }
+            if(lastOperator === "-"){
+                minusNumbers[minusNumbers.length] *= parseFloat(savingNumbers);
+            }
+            savingNumbers = "";
+        }
+
         //for loop (all additions + all minus) + (all multiplications + all divisions)
         for(i = 0; i < plusNumbers.length; i++){
             result += parseFloat(plusNumbers[i]);
@@ -118,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
         lastOperator = "";
         newOperator = "";
         result = 0;
+        outputbar.textContent = result;
         //output all data in console
         console.log(savingNumbers);
         console.log(plusNumbers);
@@ -143,6 +155,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 minusNumbers[minusNumbers.length] = savingNumbers;
                 savingNumbers = "";
             }
+            
+            if(savingNumbers!="" && lastOperator != ""){
+                if(lastOperator === "+"){
+                    if(lastOperator === ""){
+                        plusNumbers[plusNumbers.length] = savingNumbers;
+                    }
+                    plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
+                }
+                if(lastOperator === "-"){
+                    if(lastOperator === ""){
+                        minusNumbers[minusNumbers.length] = savingNumbers;
+                    }
+                    minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
+                }
+                savingNumbers = "";
+            }
+
 
             //output all data in console
             console.log(savingNumbers);
@@ -165,6 +194,57 @@ document.addEventListener("DOMContentLoaded", function() {
                 savingNumbers = "";
             }
 
+            if(savingNumbers!=="" && lastOperator !== ""){
+                if(lastOperator === "+"){
+                    if(lastOperator === ""){
+                        plusNumbers[plusNumbers.length] = savingNumbers;
+                    }
+                    plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
+                }
+                if(lastOperator === "-"){
+                    if(lastOperator === ""){
+                        minusNumbers[minusNumbers.length] = savingNumbers;
+                    }
+                    minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
+                }
+                savingNumbers = "";
+            }
+
+            //output all data in console
+            console.log(savingNumbers);
+            console.log(plusNumbers);
+            console.log(minusNumbers);
+        }
+
+        if(operator === "multiply"){
+            console.log("multiply operator has been chosen");
+
+            lastOperator = newOperator;
+            newOperator = "*";
+
+            if((lastOperator === "" || lastOperator === "+") && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+                plusNumbers[plusNumbers.length] = savingNumbers;
+                savingNumbers = "";
+            }
+            if(lastOperator === "-" && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+                minusNumbers[minusNumbers.length] = savingNumbers;
+                savingNumbers = "";
+            }
+
+            if(savingNumbers!=="" && lastOperator !== ""){
+                if(lastOperator === "+"){
+                    plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
+                    
+                }
+                if(lastOperator === "-"){
+                    if(lastOperator === ""){
+                        minusNumbers[minusNumbers.length] = savingNumbers;
+                    }
+                    minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
+                }
+                savingNumbers = "";
+            }
+
             //output all data in console
             console.log(savingNumbers);
             console.log(plusNumbers);
@@ -178,5 +258,11 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     minus.addEventListener("click", function(){
         categorizeNumber("minus");
+    })
+    multiply.addEventListener("click", function(){
+        categorizeNumber("multiply");
+    })
+    divide.addEventListener("click", function(){
+        categorizeNumber("divide");
     })
 });

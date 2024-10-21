@@ -89,16 +89,19 @@ document.addEventListener("DOMContentLoaded", function() {
     submitButton.addEventListener("click", function(){
         lastOperator = newOperator; //fixes bug with not doing minus on first try
         
-        if((lastOperator === "" || lastOperator === "+") && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+        if((lastOperator === "" || lastOperator === "+") && savingNumbers!=""){
             plusNumbers[plusNumbers.length] = savingNumbers;
             savingNumbers = "";
         }
-        if(lastOperator === "-" && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){ //wenn wir enter drücken wird lastOperator zu ""
+        if(lastOperator === "-" && savingNumbers!=""){ //wenn wir enter drücken wird lastOperator zu ""
             minusNumbers[minusNumbers.length] = savingNumbers;
             savingNumbers = "";
         }
 
-
+        if(lastOperator == "*"){
+            plusNumbers[plusNumbers.length-1] *= 5;
+            savingNumbers = "";
+        }
 
         //for loop (all additions + all minus) + (all multiplications + all divisions)
         for(i = 0; i < plusNumbers.length; i++){
@@ -108,8 +111,6 @@ document.addEventListener("DOMContentLoaded", function() {
         for(j = 0; j < minusNumbers.length; j++){
             result -= parseFloat(minusNumbers[j]);
         }
-
-
 
         console.log(result);
         outputbar.textContent = result;
@@ -144,11 +145,11 @@ document.addEventListener("DOMContentLoaded", function() {
             lastOperator = newOperator;
             newOperator = "+";
 
-            if((lastOperator === "" || lastOperator === "+") && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+            if((lastOperator === "" || lastOperator === "+") && savingNumbers!=""){ //if savingNumbers == 0 then make it to the number I input (need to do!!!)
                 plusNumbers[plusNumbers.length] = savingNumbers;
                 savingNumbers = "";
             }
-            if(lastOperator === "-" && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+            if(lastOperator === "-" && savingNumbers!=""){
                 minusNumbers[minusNumbers.length] = savingNumbers;
                 savingNumbers = "";
             }
@@ -168,11 +169,11 @@ document.addEventListener("DOMContentLoaded", function() {
             lastOperator = newOperator;
             newOperator = "-";
 
-            if((lastOperator === "" || lastOperator === "+") && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+            if((lastOperator === "" || lastOperator === "+") && savingNumbers!=""){ 
                 plusNumbers[plusNumbers.length] = savingNumbers;
                 savingNumbers = "";
             }
-            if(lastOperator === "-" && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+            if(lastOperator === "-" && savingNumbers!=""){
                 minusNumbers[minusNumbers.length] = savingNumbers;
                 savingNumbers = "";
             }
@@ -191,25 +192,17 @@ document.addEventListener("DOMContentLoaded", function() {
             lastOperator = newOperator;
             newOperator = "*";
 
-            if((lastOperator === "" || lastOperator === "+") && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+            if((lastOperator === "" || lastOperator === "+") && savingNumbers!=""){ 
                 plusNumbers[plusNumbers.length] = savingNumbers;
                 savingNumbers = "";
             }
-            if(lastOperator === "-" && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
+            if(lastOperator === "-" && savingNumbers!=""){
                 minusNumbers[minusNumbers.length] = savingNumbers;
                 savingNumbers = "";
             }
 
-            if(savingNumbers!=="" && lastOperator !== ""){
-                if(lastOperator === "+"){
-                    plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
-                    
-                }
-                if(lastOperator === "-"){
-                    minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
-                }
-                savingNumbers = "";
-            } /* wir müssen das so machen dass wen das mal gedrückt wird, 
+
+             /* wir müssen das so machen dass wen das mal gedrückt wird, 
             dass die zahl davor gespeichert wird und halt wenn wieder mal vorkommt dass diese zahl die jetzt 
             entweder in minus doer plus numbers sich befindet eben mit der zahl davor mulitpliziert wird 
             und wenn enter gedrückt wird, dass die zahl auch davor multipliziert wird. 

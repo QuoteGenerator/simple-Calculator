@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let lastOperator = "";
     let newOperator = "";
 
+    let pressedEnter = false;
+
     //Right-side-calculator
     let submitButton = document.getElementById("submitButton");
     let deleteButton = document.getElementById("deleteButton");
@@ -85,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     submitButton.addEventListener("click", function(){
+        lastOperator = newOperator; //fixes bug with not doing minus on first try
         
         if((lastOperator === "" || lastOperator === "+") && (newOperator !== "/" && newOperator !== "*") && savingNumbers!=""){
             plusNumbers[plusNumbers.length] = savingNumbers;
@@ -105,6 +108,8 @@ document.addEventListener("DOMContentLoaded", function() {
         for(j = 0; j < minusNumbers.length; j++){
             result -= parseFloat(minusNumbers[j]);
         }
+
+
 
         console.log(result);
         outputbar.textContent = result;

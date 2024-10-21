@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if(lastOperator == "*"){
-            plusNumbers[plusNumbers.length-1] *= 5;
+            plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
             savingNumbers = "";
         }
 

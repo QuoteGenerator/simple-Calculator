@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     submitButton.addEventListener("click", function(){
+        let lastLastOperator = lastOperator;
         lastOperator = newOperator; //fixes bug with not doing minus on first try
         
         if((lastOperator === "" || lastOperator === "+") && savingNumbers!=""){
@@ -97,9 +98,18 @@ document.addEventListener("DOMContentLoaded", function() {
             minusNumbers[minusNumbers.length] = savingNumbers;
             savingNumbers = "";
         }
-
-        if(lastOperator == "*"){
-            plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
+        if(lastOperator === "*" && savingNumbers !== "" && result === 0 ){
+            if(lastLastOperator === "+" || lastLastOperator == "" || lastOperator == "*"){
+                plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
+                savingNumbers = "";
+            }
+            if(lastLastOperator === "-"){
+                minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
+                savingNumbers = "";
+            }
+        }
+        if(lastOperator === "*" && newOperator === "*" && result !== 0){
+            result *= Number(savingNumbers);
             savingNumbers = "";
         }
 
@@ -116,6 +126,9 @@ document.addEventListener("DOMContentLoaded", function() {
         outputbar.textContent = result;
         plusNumbers = [];
         minusNumbers = [];
+        lastOperator = "";
+        newOperator = "";
+        lastLastOperator = "";
     })
     
     deleteButton.addEventListener("click",function(){
@@ -154,7 +167,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 savingNumbers = "";
             }
             
-            
+            if(lastOperator === "*" && savingNumbers !== "" && result === 0){
+                if(lastOperator === "+" || lastOperator == "" || lastOperator == "*"){
+                    plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+                if(lastOperator === "-"){
+                    minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+            }
 
 
             //output all data in console
@@ -201,6 +223,27 @@ document.addEventListener("DOMContentLoaded", function() {
                 savingNumbers = "";
             }
 
+            if(lastOperator === "*" && savingNumbers !== "" && result === 0){
+                if(lastOperator === "+" || lastOperator == "" || lastOperator == "*"){
+                    plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+                if(lastOperator === "-"){
+                    minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+            } 
+            if(lastOperator === "*" && savingNumbers !== "" && result !== 0){
+                if(lastOperator === "+" || lastOperator == "" || lastOperator == "*"){
+                    result *= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+                if(lastOperator === "-"){
+                    esult *= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+            } 
+            
 
              /* wir müssen das so machen dass wen das mal gedrückt wird, 
             dass die zahl davor gespeichert wird und halt wenn wieder mal vorkommt dass diese zahl die jetzt 
@@ -217,6 +260,8 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(plusNumbers);
             console.log(minusNumbers);
         }
+
+
         
     }
 

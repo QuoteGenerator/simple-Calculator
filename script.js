@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     savingNumbers = "";
                 }
                 if(lastOperator === "-"){
-                    esult *= parseFloat(savingNumbers);
+                    result *= parseFloat(savingNumbers);
                     savingNumbers = "";
                 }
             } 

@@ -113,6 +113,21 @@ document.addEventListener("DOMContentLoaded", function() {
             savingNumbers = "";
         }
 
+        if(lastOperator === "/" && savingNumbers !== "" && result === 0 ){
+            if(lastLastOperator === "+" || lastLastOperator == "" || lastOperator == "/"){
+                plusNumbers[plusNumbers.length-1] /= parseFloat(savingNumbers);
+                savingNumbers = "";
+            }
+            if(lastLastOperator === "-"){
+                minusNumbers[minusNumbers.length-1] /= parseFloat(savingNumbers);
+                savingNumbers = "";
+            }
+        }
+        if(lastOperator === "/" && newOperator === "/" && result !== 0){
+            result /= Number(savingNumbers);
+            savingNumbers = "";
+        }
+
         //for loop (all additions + all minus) + (all multiplications + all divisions)
         for(i = 0; i < plusNumbers.length; i++){
             result += parseFloat(plusNumbers[i]);
@@ -243,18 +258,72 @@ document.addEventListener("DOMContentLoaded", function() {
                     savingNumbers = "";
                 }
             } 
-            
+        
+            //output all data in console
+            console.log(savingNumbers);
+            console.log(plusNumbers);
+            console.log(minusNumbers);
+        }
 
-             /* wir müssen das so machen dass wen das mal gedrückt wird, 
-            dass die zahl davor gespeichert wird und halt wenn wieder mal vorkommt dass diese zahl die jetzt 
-            entweder in minus doer plus numbers sich befindet eben mit der zahl davor mulitpliziert wird 
-            und wenn enter gedrückt wird, dass die zahl auch davor multipliziert wird. 
-            3 * 4 (die drei soll gespeichert werden, nun zum ende enter wird gedrückt und das heißt 3 * 4.) beim beispiel, 
-            wie: 3 * 4 * 5 (3 zuerst wird gespeichert nachdem * zeichen gedrückt wurde im Plus und nachdem 4 
-                wird die zahl mit der vorherigen eben gerechnet, der gespeicherten also und die 5 genauso rechnet das mal 5, 
-                da wir ja keine zahlen dazwischen speichern und somit immer (die letzte[neuste]) zahl drücken können
-            */
+        if(operator === "divide"){
+            console.log("divide operator has been chosen");
 
+            lastOperator = newOperator;
+            newOperator = "/";
+
+            if((lastOperator === "" || lastOperator === "+") && savingNumbers!=""){ 
+                plusNumbers[plusNumbers.length] = savingNumbers;
+                savingNumbers = "";
+            }
+            if(lastOperator === "-" && savingNumbers!=""){
+                minusNumbers[minusNumbers.length] = savingNumbers;
+                savingNumbers = "";
+            }
+
+            if(lastOperator === "*" && savingNumbers !== "" && result === 0){
+                if(lastOperator === "+" || lastOperator == "" || lastOperator == "*"){
+                    plusNumbers[plusNumbers.length-1] *= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+                if(lastOperator === "-"){
+                    minusNumbers[minusNumbers.length-1] *= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+            } 
+            if(lastOperator === "*" && savingNumbers !== "" && result !== 0){
+                if(lastOperator === "+" || lastOperator == "" || lastOperator == "*"){
+                    result *= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+                if(lastOperator === "-"){
+                    result *= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+            } 
+
+            if(lastOperator === "/" && savingNumbers !== "" && result === 0){
+                if(lastOperator === "+" || lastOperator == "" || lastOperator == "/"){
+                    plusNumbers[plusNumbers.length-1] /= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+                if(lastOperator === "-"){
+                    minusNumbers[minusNumbers.length-1] /= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+            } 
+            if(lastOperator === "/" && savingNumbers !== "" && result !== 0){
+                if(lastOperator === "+" || lastOperator == "" || lastOperator == "/"){
+                    result /= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+                if(lastOperator === "-"){
+                    result /= parseFloat(savingNumbers);
+                    savingNumbers = "";
+                }
+            } 
+
+
+        
             //output all data in console
             console.log(savingNumbers);
             console.log(plusNumbers);
